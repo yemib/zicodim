@@ -1,0 +1,117 @@
+
+@extends('client')
+
+<?php   
+use App\order_list;
+use App\add_product;
+use App\client;
+
+$client  = client::where('id',  session('client')['id'] )->first();
+
+$progress_order = order_list::where('state' , 'progress')->where('email' , session('client')['id'] )->orderBy('id', 'desc')->paginate(50);
+
+
+
+
+
+?>
+
+@section('client_extension')
+
+	<div  class="acct_info">
+	
+		<h3>Orders </h3>
+		
+		
+		 <div role="tabpanel">
+        <ul class="nav nav-tabs" role="tablist">
+         
+          <li role="presentation" class="active"><a href="#home1" data-toggle="tab" role="tab" aria-controls="tab1">Progress Orders</a></li>
+          
+          
+          <li role="presentation"><a href="#paneTwo1" data-toggle="tab" role="tab" aria-controls="tab2">Completed Orders</a></li> 
+          
+           
+             <li role="presentation"><a href="#paneTwo2" data-toggle="tab" role="tab" aria-controls="tab2">Canceled Orders</a></li>
+          
+          
+     
+          
+          
+        </ul>
+        <div id="tabContent1" class="tab-content">
+         
+          <div role="tabpanel" class="tab-pane fade in active" id="home1">
+          
+          <?php 
+			  $color  = 'btn-success';
+			  $type_table = 'progressing';
+			  
+			  ?>
+       
+           @include('client.order_design')
+
+             @if(!isset($progress_order->id))
+            <h5> No Progress Order  </h5>
+            
+            @endif
+          
+           </div>
+          
+          <div role="tabpanel" class="tab-pane fade" id="paneTwo1">
+           
+         <?php 
+			  $progress_order = order_list::where('state' , 'complete')->where('email' , session('client')['id'] )->orderBy('id', 'asc')->paginate(50);
+			  
+			  $color  = 'btn-success';
+			  $type_table = 'completed';
+			  
+			  ?>
+       
+           @include('client.order_design')
+            
+               @if(!isset($progress_order->id))
+            <h5> No Completed Order  </h5>
+            
+            @endif
+            
+          </div>
+          
+          
+          <div role="tabpanel" class="tab-pane fade" id="paneTwo2">
+           
+           
+                  
+         <?php 
+			  $progress_order = order_list::where('state' , 'cancel')->where('email' , session('client')['id'])->orderBy('id', 'asc')->paginate(50);
+			  
+			  $color  = 'btn-danger';
+			  $type_table = 'Cancelled';
+			  
+			  ?>
+       
+           @include('client.order_design')
+           
+            
+            @if(!isset($progress_order->id))
+            <h5> No Cancelled Order  </h5>
+            
+            @endif
+            
+          </div>
+          
+       
+          
+          
+          
+        </div>
+      </div>
+		
+		
+		
+			</div>
+
+@endsection
+
+
+

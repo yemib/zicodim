@@ -1,0 +1,31 @@
+sweet alert.  
+color.
+
+
+description of products  and  allow upload of multiple picture 
+
+portfolio
+site title
+
+
+lead to whatapp.  
+upload write on option of what you want before purchasing
+chat on whatapp 
+simple registration 
+    email and phone number 
+SEO 
+about
+when delete , delete file as well. 
+
+office address/ phone number 
+
+
+integrate email function here...   // no paparazy just view inbox delete and  view...
+send email.
+
+debug
+   when admin logout blank page when trying to access  page.
+     category upload folder issue
+    cart issue..
+
+#fff212
